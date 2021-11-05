@@ -1,0 +1,41 @@
+body{
+    background-image: url(/media/nbrbqn0p/backgroundfixed.jpg);
+    background-size: 100%;
+    height: 80%;
+}
+
+.contentDiv{
+    margin-top: 10rem;
+    width:100%;
+}
+.list-group{
+    
+    width: 50%;
+}
+
+
+.list-group h1{
+    background-color: #0d6dfdb7;
+    margin-bottom: 0;
+    
+}
+
+#navbarNav a{
+    margin-left: 1rem;
+    font-style:oblique;
+    font-size: 24px;
+    color: rgb(167, 165, 50);
+}
+
+#MovieZone{
+    font-size: 40px;
+    color: #0d6dfdb7;
+    text-decoration: underline;
+}
+#filmlogo{
+    color: rgb(167, 165, 50);
+    margin-left: .3rem;
+    
+}
+
+

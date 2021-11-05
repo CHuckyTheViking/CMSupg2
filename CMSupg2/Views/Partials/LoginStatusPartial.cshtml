@@ -1,0 +1,39 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@using Microsoft.AspNetCore.Http.Extensions
+@using Umbraco.Cms.Web.Common.Models
+@using Umbraco.Cms.Web.Website.Controllers
+@using Umbraco.Extensions
+
+@{
+    var isLoggedIn = Context.User?.Identity?.IsAuthenticated ?? false;
+    var logoutModel = new PostRedirectModel();
+    // You can modify this to redirect to a different URL instead of the current one
+    logoutModel.RedirectUrl = null;
+}
+
+<head>
+    <link rel="stylesheet" href="/css/login.css" />
+</head>
+
+@if (!isLoggedIn)
+{
+    <div class="d-flex logintext">
+        <a class="nav-link" href="@Umbraco.Content("3d3c648e-1750-4c70-95c4-097b9bfc0828").Url()">@Umbraco.GetDictionaryValue("login")</a>
+    </div>
+        
+        
+}
+@if (isLoggedIn)
+{
+    <div class="login-status">
+
+        <p>@Umbraco.GetDictionaryValue("welcomeback") <strong>@Context.User.Identity.Name</strong>!</p>
+
+        @using (Html.BeginUmbracoForm<UmbLoginStatusController>("HandleLogout", new { RedirectUrl = logoutModel.RedirectUrl }))
+        {
+            <button type="submit" class="btn btn-primary">@Umbraco.GetDictionaryValue("logout")</button>
+        }
+
+    </div>
+}

@@ -1,0 +1,59 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Home>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+}
+<head>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+
+@{
+	var allReviewPosts = Umbraco.Content(1091)
+    .ChildrenOfType("reviewPost")
+    .Where(x => x.IsVisible())
+    .OrderByDescending(x => x.CreateDate);
+    
+    var allNewsPosts = Umbraco.Content(1092)
+    .ChildrenOfType("newsPost")
+    .Where(x => x.IsVisible())
+    .OrderByDescending(x => x.CreateDate);
+}
+
+
+  <div class="contentDiv d-flex">
+        <div class="list-group ">
+            <h1 class="d-flex justify-content-center">@Umbraco.GetDictionaryValue("latestreviews")</h1>
+            @foreach (var item in allReviewPosts)
+            {
+            	<a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">@item.Value("reviewTitle")</h5>
+                        <small>@item.Value("reviewDate")</small>
+                      </div>
+                  <p class="mb-1">@item.Value("reviewShortContent")</p>
+                </a>    
+            }
+
+        </div>
+        <div class="list-group">
+                 <h1 class="d-flex justify-content-center">@Umbraco.GetDictionaryValue("latestnews")</h1>
+                @foreach (var item in allNewsPosts)
+                {
+                	<a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                          <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">@item.Value("newsTitle")</h5>
+                            <small>@item.Value("newsDate")</small>
+                          </div>
+                      <p class="mb-1">@item.Value("newsShortContent")</p>
+                    </a>    
+               }
+               
+        </div>
+        
+    
+  </div>
+
+
+

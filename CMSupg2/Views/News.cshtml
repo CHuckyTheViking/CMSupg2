@@ -1,0 +1,49 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.News>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+}
+<head>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+@{
+	var allNewsPosts = Umbraco.Content(1092)
+    .ChildrenOfType("newsPost")
+    .Where(x => x.IsVisible())
+    .OrderByDescending(x => x.CreateDate);
+}
+
+
+
+
+    <div class="container"> 
+        @foreach (var item in allNewsPosts)
+            {
+
+                var image = item.Value<IPublishedContent>("newsImage");
+            
+                <a href="#" class="list-group-item list-group-item-action m-2" aria-current="true">
+                    <div style="display:flex;">
+                          <img class="mt-2 mb-2" style="width: 350px; height: 350px; margin-left:2rem;" src="@image.Url()"/>
+                          <div style="margin-left:2rem;">
+                            <h2 class="mt-3">@item.Value("newsTitle")</h2>
+                            <small>@item.Value("newsDate")</small>
+                            <p class="ml-1 mb-4 mt-5">@item.Value("newsContent")</p>
+                          </div>
+                    </div>
+                    
+                    
+              </a>  
+  
+  
+  
+            }
+    </div>
+
+
+
+
+
+
