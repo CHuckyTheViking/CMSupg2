@@ -1,7 +1,8 @@
 body{
     background-image: url(/media/nbrbqn0p/backgroundfixed.jpg);
-    background-size: 100%;
+    background-size: 75%;
     height: 80%;
+    width:75%;
 }
 
 .contentDiv{

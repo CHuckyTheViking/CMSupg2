@@ -4,9 +4,7 @@
 @{
 	Layout = "Master.cshtml";
 }
-<head>
-    <link rel="stylesheet" href="/css/style.css" />
-</head>
+
 
 @{
 	var allNewsPosts = Umbraco.Content(1092)
@@ -15,6 +13,9 @@
     .OrderByDescending(x => x.CreateDate);
 }
 
+<head>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
 
 
 
@@ -24,7 +25,7 @@
 
                 var image = item.Value<IPublishedContent>("newsImage");
             
-                <a href="#" class="list-group-item list-group-item-action m-2" aria-current="true">
+                <a href="@item.Url()" class="list-group-item list-group-item-action m-2" aria-current="true">
                     <div style="display:flex;">
                           <img class="mt-2 mb-2" style="width: 350px; height: 350px; margin-left:2rem;" src="@image.Url()"/>
                           <div style="margin-left:2rem;">
